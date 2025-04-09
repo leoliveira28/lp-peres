@@ -45,7 +45,7 @@ const services = [
   },
 ] as const;
 
-const whatsappLink = "https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20seus%20serviços";
+const whatsappLink = "https://wa.me/5517992120217?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20seus%20serviços";
 
 export default function Home() {
   const [ref, inView] = useInView({
@@ -62,9 +62,9 @@ export default function Home() {
             <Image
               src="/logo.png"
               alt="Peres Engenharia"
-              width={40}
-              height={40}
-              className="w-10 h-10"
+              width={100}
+              height={100}
+              className="w-20 h-20"
             />
             <span className="font-semibold text-lg">Peres Engenharia</span>
           </div>
