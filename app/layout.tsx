@@ -1,4 +1,6 @@
 import './globals.css';
+import { GoogleTagManager } from '@next/third-parties/google'
+
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -28,7 +30,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <GoogleTagManager gtmId="AW-16890255640" />
+      </body>
     </html>
   );
 }

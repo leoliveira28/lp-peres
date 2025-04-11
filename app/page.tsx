@@ -6,6 +6,27 @@ import { Card } from "@/components/ui/card";
 import { Building2, FileText, Clock, ClipboardCheck, Calculator, HardHat, MessageSquare } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
+import { useEffect, useCallback } from "react";
+
+// Custom hook for Google Ads conversion tracking
+const useGtagConversion = () => {
+  const trackConversion = useCallback((url: string) => {
+    if (typeof window !== "undefined" && typeof window.gtag !== "undefined") {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-16890255640/UrJjCLmm8bYaEJiy8_U-',
+        'event_callback': function() {
+          window.location.href = url;
+        }
+      });
+      return false;
+    } else {
+      window.location.href = url;
+      return false;
+    }
+  }, []);
+
+  return trackConversion;
+};
 
 const services = [
   {
@@ -52,6 +73,8 @@ export default function Home() {
     triggerOnce: true,
     threshold: 0.1,
   });
+  
+  const trackConversion = useGtagConversion();
 
   return (
     <main className="min-h-screen">
@@ -70,7 +93,7 @@ export default function Home() {
           </div>
           <Button
             variant="default"
-            onClick={() => window.location.href = whatsappLink}
+            onClick={() => trackConversion(whatsappLink)}
           >
             <MessageSquare className="mr-2 h-4 w-4" />
             Fale Conosco
@@ -116,7 +139,7 @@ export default function Home() {
           >
             <Button
               size="lg"
-              onClick={() => window.location.href = whatsappLink}
+              onClick={() => trackConversion(whatsappLink)}
               className="text-lg"
             >
               Solicitar Orçamento
@@ -184,7 +207,7 @@ export default function Home() {
           <Button
             size="lg"
             variant="secondary"
-            onClick={() => window.location.href = whatsappLink}
+            onClick={() => trackConversion(whatsappLink)}
           >
             <MessageSquare className="mr-2 h-4 w-4" />
             Falar com Especialista
@@ -198,6 +221,10 @@ export default function Home() {
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+        onClick={(e) => {
+          e.preventDefault();
+          trackConversion(whatsappLink);
+        }}
       >
         <MessageSquare className="h-6 w-6" />
       </a>
