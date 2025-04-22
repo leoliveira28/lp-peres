@@ -13,7 +13,7 @@ const useGtagConversion = () => {
   const trackConversion = useCallback((url: string) => {
     if (typeof window !== "undefined" && typeof window.gtag !== "undefined") {
       window.gtag('event', 'conversion', {
-        'send_to': 'AW-16890255640/UrJjCLmm8bYaEJiy8_U-',
+        'send_to': 'GTM-MZS34FKL',
         'event_callback': function() {
           window.location.href = url;
         }
